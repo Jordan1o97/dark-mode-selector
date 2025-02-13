@@ -1,0 +1,120 @@
+:root {
+  --primary: #52BAE2;
+  --secondary: #C2E9F5;
+  --border: #E5E5E5;
+  --text: #000000;
+  --background: #FFFFFF;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.header .top {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center; 
+}
+.header .bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.theme-selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-container {
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  gap: 33px;
+}
+
+/* The whole slider */
+.radio-container {
+  position: relative;
+  width: 175px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.radio {
+  position: relative;
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* radio button */
+.radio-btn {
+  width: 25px;
+  height: 25px;
+  background: var(--secondary);
+  border-radius: 25px;
+  margin: 0 auto;
+}
+
+/* track*/
+.radio-track {
+  position: absolute;
+  top: calc(25px / 4);
+  left: calc(25px / 2);
+  width: calc(100% - 25px);
+  height: 12.5px;
+  background: var(--secondary);
+  z-index: 1;
+}
+
+/* moving ball */
+.radio-indicator {
+  position: absolute;
+  top: calc((25px - 18px)/2);
+  left: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  transition: left 0.3s ease;
+  z-index: 2;
+}
+
+/* dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body.system-theme {
+    --background: #1a1a1a;
+    --text: #ffffff;
+    --primary: #52BAE2;
+    --secondary: #1e4d5f;
+    --border: #333333;
+  }
+}
+
+body.dark-theme {
+  --background: #000000;
+  --text: #ffffff;
+  --primary: #e2528e;
+  --secondary: #5f1e49;
+  --border: #333333;
+}
