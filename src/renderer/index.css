@@ -103,10 +103,10 @@ body {
 /* dark mode styles */
 @media (prefers-color-scheme: dark) {
   body.system-theme {
-    --background: #1a1a1a;
+    --background: #000000;
     --text: #ffffff;
-    --primary: #52BAE2;
-    --secondary: #1e4d5f;
+    --primary: #e2528e;
+    --secondary: #5f1e49;
     --border: #333333;
   }
 }
