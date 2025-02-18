@@ -6,21 +6,21 @@ const settingsPath = path.join(app.getPath('userData'), 'settings.json');
 
 function loadSettings() {
   try {
-    return JSON.parse(fs.readFileSync(settingsPath));
+    return fs.readFileSync(settingsPath, 'utf8');
   } catch (e) {
-    return { theme: 'system' };
+    return 'system';
   }
 }
 
-function saveSettings(settings) {
-  fs.writeFileSync(settingsPath, JSON.stringify(settings));
+function saveSettings(theme) {
+  fs.writeFileSync(settingsPath, theme, 'utf8');
 }
 
 function initializeSettings() {
   if (!fs.existsSync(settingsPath)) {
-    const defaultSettings = { theme: 'system' };
-    saveSettings(defaultSettings);
-    return defaultSettings;
+    const defaultTheme = 'system';
+    saveSettings(defaultTheme);
+    return defaultTheme;
   }
   return loadSettings();
 }

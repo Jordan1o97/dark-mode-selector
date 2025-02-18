@@ -4,6 +4,12 @@
   --border: #E5E5E5;
   --text: #000000;
   --background: #FFFFFF;
+
+  /* size variables for the slider */
+  --radio-size: 25px;
+  --indicator-size: 18px;
+  --gap: 50px;
+  --text-gap: 35px;
 }
 
 body {
@@ -18,12 +24,14 @@ body {
   flex-direction: column;
   padding: 30px;
 }
+
 .header .top {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  align-items: center; 
+  align-items: center;
 }
+
 .header .bottom {
   display: flex;
   flex-direction: row;
@@ -39,68 +47,82 @@ body {
 .border-container {
   border: 2px solid var(--border);
   border-radius: 5px;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title-container {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  gap: 33px;
 }
 
-/* The whole slider */
+/* the slider container with dynamiuc width */
 .radio-container {
   position: relative;
-  width: 175px;
   margin: auto;
   display: flex;
   justify-content: space-between;
-  position: relative;
 }
 
+/* each radio style */
 .radio {
   position: relative;
-  width: 25px;
+  width: var(--radio-size);
   text-align: center;
   cursor: pointer;
   z-index: 2;
 }
 
-/* radio button */
+/* inidcator Style */
 .radio-btn {
-  width: 25px;
-  height: 25px;
+  width: var(--radio-size);
+  height: var(--radio-size);
   background: var(--secondary);
-  border-radius: 25px;
+  border-radius: 50%;
   margin: 0 auto;
 }
 
-/* track*/
+/* the track behind the radio buttons */
 .radio-track {
   position: absolute;
-  top: calc(25px / 4);
-  left: calc(25px / 2);
-  width: calc(100% - 25px);
-  height: 12.5px;
+  top: calc(var(--radio-size) / 4);
+  left: calc(var(--radio-size) / 2);
+  width: calc(100% - var(--radio-size));
+  height: calc(var(--radio-size) / 2);
   background: var(--secondary);
   z-index: 1;
 }
 
-/* moving ball */
 .radio-indicator {
   position: absolute;
-  top: calc((25px - 18px)/2);
-  left: 0;
-  width: 18px;
-  height: 18px;
+  top: calc((var(--radio-size) - var(--indicator-size)) / 2);
+  left: calc(0px + ((var(--radio-size) - var(--indicator-size)) / 2));
+  width: var(--indicator-size);
+  height: var(--indicator-size);
   border-radius: 50%;
   background: var(--primary);
   transition: left 0.3s ease;
   z-index: 2;
 }
 
-/* dark mode styles */
+/* irrelevant now: keeping for demoing css aniation skills.*/
+.radio-container[data-selected="dark"] .radio-indicator {
+  left: calc(0px + ((var(--radio-size) - var(--indicator-size)) / 2));
+}
+
+.radio-container[data-selected="system"] .radio-indicator {
+  left: calc(var(--radio-size) + var(--gap) + ((var(--radio-size) - var(--indicator-size)) / 2));
+}
+
+.radio-container[data-selected="light"] .radio-indicator {
+  left: calc(2 * (var(--radio-size) + var(--gap)) + ((var(--radio-size) - var(--indicator-size)) / 2));
+}
+
+/* irrelevant now: keeping for demo sake though*/
 @media (prefers-color-scheme: dark) {
   body.system-theme {
     --background: #000000;

@@ -21,13 +21,6 @@ const createWindow = () => {
   });
 
   const settings = initializeSettings();;
-  if (settings.theme === 'dark') {
-    nativeTheme.themeSource = 'dark';
-  } else if (settings.theme === 'light') {
-    nativeTheme.themeSource = 'light';
-  } else {
-    nativeTheme.themeSource = 'system';
-  }
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
@@ -39,15 +32,14 @@ const createWindow = () => {
 app.whenReady().then(() => {
 
   ipcMain.handle('get-theme', () => {
-    return loadSettings().theme;
+    return loadSettings();
   });
-
+  
   ipcMain.handle('set-theme', (_, theme) => {
-    saveSettings({ theme });
-    nativeTheme.themeSource = theme;
+    saveSettings(theme);
     return theme;
   });
-
+  
   createWindow();
 
   // OSX only
